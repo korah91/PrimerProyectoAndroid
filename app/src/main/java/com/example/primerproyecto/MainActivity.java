@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -37,6 +38,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Obtenemos el BD Helper
+        DbHelper dbHelper = new DbHelper(MainActivity.this);
+        // Le indicamos que se va a escribir sobre la BD
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        if(db != null){
+            Toast.makeText(MainActivity.this, "Se ha creado la BD", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(MainActivity.this, "Ha habido un error", Toast.LENGTH_SHORT).show();
+        }
 
         // Obtengo la lista
         presidentList = myapp.getPresidentList();
