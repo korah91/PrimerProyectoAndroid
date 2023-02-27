@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_AZ"
+        android:title="A-Z" />
+    <item
+        android:id="@+id/menu_ZA"
+        android:title="Z-A" />
+    <item
+        android:id="@+id/menu_dateASC"
+        android:title="Date Ascending" />
+    <item
+        android:id="@+id/menu_dateDESC"
+        android:title="Date Descending" />
+</menu>
