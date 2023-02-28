@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Presidents APP";
 
-    MyApp myapp = (MyApp) this.getApplication();
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     Button btn_anadir;
-    List<President> presidentList;
+    List<Universidad> listaUniversidades;
     Menu menu;
 
     @Override
@@ -51,12 +50,17 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Ha habido un error", Toast.LENGTH_SHORT).show();
         }
 
-        // Obtengo la lista
-        presidentList = myapp.getPresidentList();
+        // Obtenemos el objeto DB para universidades
+        DbUniversidades dbUniversidades = new DbUniversidades(this);
 
-        Log.d(TAG, "onCreate: "+ presidentList.toString());
-        Toast.makeText(this, "Presidents count: "+ presidentList.size(), Toast.LENGTH_SHORT).show();
+        // Obtengo la lista de universidades de la BD; cargo BD en objetos
+        listaUniversidades = dbUniversidades.mostrarUniversidades();
 
+        // Log que imprime todas las universidades
+        Log.d(TAG, "onCreate: "+ listaUniversidades.toString());
+        Toast.makeText(this, "Universidades count: "+ listaUniversidades.size(), Toast.LENGTH_SHORT).show();
+
+        // Boton para anadir una nueva universidad
         btn_anadir = findViewById(R.id.btn_anadir);
         btn_anadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // Uso el Adapter
-        mAdapter = new Adapter(presidentList, MainActivity.this);
+        mAdapter = new Adapter(listaUniversidades, MainActivity.this);
         recyclerView.setAdapter(mAdapter);
     }
 
@@ -93,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menu_AZ:
                 // ordenar de A a Z
-                // Ordeno la lista de presidentes utilizando un comparador diferente para cada opcion
-                Collections.sort(presidentList, President.PresidentNameAZComparator);
+                // Ordeno la lista de universidades utilizando un comparador diferente para cada opcion
+                Collections.sort(listaUniversidades, Universidad.UniversidadNameAZComparator);
                 Toast.makeText(MainActivity.this, "Ordenado de A a Z", Toast.LENGTH_SHORT).show();
 
                 // Le aviso al adaptador que los datos de las vistas se han cambiado para que se actualice.
@@ -102,20 +106,20 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.menu_ZA:
                 // ordenar de Z a A
-                Collections.sort(presidentList, President.PresidentNameZAComparator);
+                Collections.sort(listaUniversidades, Universidad.UniversidadNameZAComparator);
                 Toast.makeText(MainActivity.this, "Ordenado de Z a A", Toast.LENGTH_SHORT).show();
                 mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_dateASC:
                 // ordenar por Date asc
-                Collections.sort(presidentList, President.PresidentDateASCComparator);
-                Toast.makeText(MainActivity.this, "Ordenado de Date ASC", Toast.LENGTH_SHORT).show();
+                Collections.sort(listaUniversidades, Universidad.UniversidadValoracionASCComparator);
+                Toast.makeText(MainActivity.this, "Ordenado de Valoracion ASC", Toast.LENGTH_SHORT).show();
                 mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_dateDESC:
                 // ordenar por Date desc
-                Collections.sort(presidentList, President.PresidentDateDESCComparator);
-                Toast.makeText(MainActivity.this, "Ordenado de Date DESC", Toast.LENGTH_SHORT).show();
+                Collections.sort(listaUniversidades, Universidad.UniversidadValoracionDESCComparator);
+                Toast.makeText(MainActivity.this, "Ordenado de Valoracion DESC", Toast.LENGTH_SHORT).show();
                 mAdapter.notifyDataSetChanged();
                 return true;
         }

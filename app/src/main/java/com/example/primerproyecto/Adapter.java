@@ -1,8 +1,6 @@
 package com.example.primerproyecto;
 
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -17,19 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
-    private List<President> presidentList;
+    private List<Universidad> listaUniversidades;
     Context context;
 
-    public Adapter(List<President> presidentList, Context context){
-        this.presidentList = presidentList;
+    public Adapter(List<Universidad> listaUniversidades, Context context){
+        this.listaUniversidades = listaUniversidades;
         this.context = context;
     }
 
@@ -45,9 +39,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             // Define click listener for the ViewHolder's View
 
             // Obtengo los valores
-            iv_presPic = view.findViewById(R.id.iv_presidentPicture);
-            tv_presName = view.findViewById(R.id.tv_presidentName);
-            tv_date = view.findViewById(R.id.tv_presidentDate);
+            iv_presPic = view.findViewById(R.id.iv_urlUniversidad);
+            tv_presName = view.findViewById(R.id.tv_nombreUniversidad);
+            tv_date = view.findViewById(R.id.tv_valoracionUniversidad);
             parentLayout = view.findViewById(R.id.oneLInePresidentLayout);
         }
 
@@ -60,7 +54,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.one_line_president, viewGroup, false);
+                .inflate(R.layout.one_line, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -69,17 +63,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
 
-        viewHolder.tv_presName.setText(""+presidentList.get(position).getName());
-        viewHolder.tv_date.setText(""+presidentList.get(position).getDate());
+        viewHolder.tv_presName.setText(""+ listaUniversidades.get(position).getNombre());
+        viewHolder.tv_date.setText(""+ listaUniversidades.get(position).getValoracion());
 
         // Utilizo la libreria Glide para coger imagenes de internet en una sola linea
-        Glide.with(context).load(presidentList.get(position).getUrl()).into(viewHolder.iv_presPic);
+        Glide.with(context).load(listaUniversidades.get(position).getUrl()).into(viewHolder.iv_presPic);
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AnadirOtro.class);
 
-                intent.putExtra("id", presidentList.get(position).getId());
+                intent.putExtra("id", listaUniversidades.get(position).getId());
                 context.startActivity(intent);
             }
         });
@@ -89,7 +83,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return presidentList.size();
+        return listaUniversidades.size();
     }
 }
 
