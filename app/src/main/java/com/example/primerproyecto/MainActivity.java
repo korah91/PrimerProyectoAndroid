@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
 
 
-    Button btn_anadir;
+    Button btn_anadir, btn_reset;
     List<Universidad> listaUniversidades;
     Menu menu;
 
@@ -67,8 +67,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AnadirOtro.class);
                 startActivity(intent);
+                finish();
             }
         });
+
+        // Boton para resetear la base de datos y anadir universidades por defecto
+        btn_reset = findViewById(R.id.btn_reset);
+        btn_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbUniversidades.reiniciarBaseDatos();
+
+                // Se han borrado los items, asi que cargo una lista vacia en el Adapter del RecyclerView
+                listaUniversidades = dbUniversidades.mostrarUniversidades();
+                mAdapter = new Adapter(listaUniversidades, MainActivity.this);
+                recyclerView.setAdapter(mAdapter);
+            }
+        });
+
+
 
         // Obtengo el recyclerview
         recyclerView = findViewById(R.id.idRecyclerView);
@@ -80,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new Adapter(listaUniversidades, MainActivity.this);
         recyclerView.setAdapter(mAdapter);
     }
+
+
+
 
     // Funcion para el menu
     @Override

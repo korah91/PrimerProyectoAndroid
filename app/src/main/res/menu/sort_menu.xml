@@ -9,8 +9,8 @@
         android:title="Z-A" />
     <item
         android:id="@+id/menu_dateASC"
-        android:title="Date Ascending" />
+        android:title="Valoración 0 a 5" />
     <item
         android:id="@+id/menu_dateDESC"
-        android:title="Date Descending" />
+        android:title="Valoración 5 a 0" />
 </menu>

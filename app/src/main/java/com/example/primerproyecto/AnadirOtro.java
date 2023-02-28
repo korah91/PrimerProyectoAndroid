@@ -110,6 +110,7 @@ public class AnadirOtro extends AppCompatActivity {
 
                     Intent intent = new Intent(AnadirOtro.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
 
                 // Si falta el nombre o la valoracion, se muestra un Toast
