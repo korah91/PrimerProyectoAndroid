@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -30,8 +31,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     // El ViewHolder controla las vistas, osea cada one_line
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView iv_presPic;
-        TextView tv_presName, tv_date;
+        ImageView iv_imagen;
+        TextView tv_nombreUniversidad;
+        RatingBar rt_valoracionUniversidad;
         ConstraintLayout parentLayout;
 
         public ViewHolder(View view) {
@@ -39,10 +41,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             // Define click listener for the ViewHolder's View
 
             // Obtengo los valores
-            iv_presPic = view.findViewById(R.id.iv_urlUniversidad);
-            tv_presName = view.findViewById(R.id.tv_nombreUniversidad);
-            tv_date = view.findViewById(R.id.tv_valoracionUniversidad);
-            parentLayout = view.findViewById(R.id.oneLInePresidentLayout);
+            iv_imagen = view.findViewById(R.id.iv_urlUniversidad);
+            tv_nombreUniversidad = view.findViewById(R.id.tv_nombreUniversidad);
+            rt_valoracionUniversidad = (RatingBar) view.findViewById(R.id.rt_evaluacionUniversidad);
+            parentLayout = view.findViewById(R.id.oneLineLayout);
         }
 
     }
@@ -63,11 +65,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
 
-        viewHolder.tv_presName.setText(""+ listaUniversidades.get(position).getNombre());
-        viewHolder.tv_date.setText(""+ listaUniversidades.get(position).getValoracion());
+        viewHolder.tv_nombreUniversidad.setText(""+ listaUniversidades.get(position).getNombre());
+        viewHolder.rt_valoracionUniversidad.setRating( (float) listaUniversidades.get(position).getValoracion());
 
         // Utilizo la libreria Glide para coger imagenes de internet en una sola linea
-        Glide.with(context).load(listaUniversidades.get(position).getUrl()).into(viewHolder.iv_presPic);
+        Glide.with(context).load(listaUniversidades.get(position).getUrl()).into(viewHolder.iv_imagen);
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
