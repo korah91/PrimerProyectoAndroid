@@ -2,6 +2,7 @@ package com.example.primerproyecto;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -70,6 +71,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         // Utilizo la libreria Glide para coger imagenes de internet en una sola linea
         Glide.with(context).load(listaUniversidades.get(position).getUrl()).into(viewHolder.iv_imagen);
+
+        // Se ejecuta cuando se da click a un elemento
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +80,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
                 intent.putExtra("id", listaUniversidades.get(position).getId());
                 context.startActivity(intent);
+
+                // Es necesario el casting para no apilar las actividades al clicar en un item
+                ((Activity)context).finish();
+
             }
         });
 
