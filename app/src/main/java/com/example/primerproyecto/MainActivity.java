@@ -1,13 +1,18 @@
 package com.example.primerproyecto;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,10 +23,11 @@ import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "Presidents APP";
+    private static final String TAG = "LOG";
 
 
     private RecyclerView recyclerView;
@@ -42,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         DbHelper dbHelper = new DbHelper(MainActivity.this);
         // Le indicamos que se va a escribir sobre la BD
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+/*
 
         if(db != null){
             Toast.makeText(MainActivity.this, "Se ha creado la BD", Toast.LENGTH_SHORT).show();
@@ -49,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         else{
             Toast.makeText(MainActivity.this, "Ha habido un error", Toast.LENGTH_SHORT).show();
         }
+*/
 
         // Obtenemos el objeto DB para universidades
         DbUniversidades dbUniversidades = new DbUniversidades(this);
@@ -142,6 +150,67 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Ordenado de Valoracion DESC", Toast.LENGTH_SHORT).show();
                 mAdapter.notifyDataSetChanged();
                 return true;
+            case R.id.menu_changeLang:
+                // cambiar idioma
+                // código de https://www.tutorialspoint.com/how-to-change-app-language-when-user-selects-language-in-android
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Elige el idioma");
+                CharSequence[] opciones = {"Castellano", "English"};
+                builder.setItems(opciones, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Locale locale;
+                        Resources res;
+                        DisplayMetrics dm;
+                        Configuration conf;
+                        Intent refresh;
+                        switch (i){
+                            // Español
+                            case 0:
+                                locale = new Locale("es-rEs");
+                                res = getResources();
+                                dm = res.getDisplayMetrics();
+                                conf = res.getConfiguration();
+                                conf.locale = locale;
+                                res.updateConfiguration(conf, dm);
+
+                                // Se reinicia la actividad con un nuevo nombre
+                                refresh = new Intent(MainActivity.this, MainActivity.class);
+
+                                // Se crea un toast
+                                Toast.makeText(MainActivity.this, "Castellano", Toast.LENGTH_SHORT).show();
+                                startActivity(refresh);
+                                finish();
+
+                                break;
+                            case 1:
+                                locale = new Locale("en");
+                                res = getResources();
+                                dm = res.getDisplayMetrics();
+                                conf = res.getConfiguration();
+                                conf.locale = locale;
+                                res.updateConfiguration(conf, dm);
+
+                                // Se reinicia la actividad con un nuevo nombre
+                                refresh = new Intent(MainActivity.this, MainActivity.class);
+
+                                // Se crea un toast
+                                Toast.makeText(MainActivity.this, "English", Toast.LENGTH_SHORT).show();
+
+
+                                startActivity(refresh);
+                                finish();
+                                break;
+
+                        }
+
+                    }
+                });
+                builder.show();
+
+                mAdapter.notifyDataSetChanged();
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);

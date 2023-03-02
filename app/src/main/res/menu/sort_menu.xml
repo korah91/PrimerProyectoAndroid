@@ -9,8 +9,11 @@
         android:title="Z-A" />
     <item
         android:id="@+id/menu_dateASC"
-        android:title="Valoración 0 a 5" />
+        android:title="@string/valoracion05" />
     <item
         android:id="@+id/menu_dateDESC"
-        android:title="Valoración 5 a 0" />
+        android:title="@string/valoracion50" />
+    <item
+        android:id="@+id/menu_changeLang"
+        android:title="@string/cambiarIdioma" />
 </menu>
