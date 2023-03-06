@@ -3,10 +3,12 @@ package com.example.primerproyecto;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +17,7 @@ import java.util.List;
 
 public class AnadirOtro extends AppCompatActivity {
     Button btn_ok, btn_cancel;
+    ImageButton btn_imagen;
     List<Universidad> listaUniversidades;
     RatingBar rt_valoracionUniversidad;
     EditText et_nombreUniversidad, et_urlUniversidad;
@@ -36,6 +39,7 @@ public class AnadirOtro extends AppCompatActivity {
         // Botones para guardar y cancelar
         btn_ok = findViewById(R.id.btn_ok);
         btn_cancel = findViewById(R.id.btn_cancel);
+        btn_imagen = findViewById(R.id.btn_imagen);
         rt_valoracionUniversidad = findViewById(R.id.rt_valoracionUniversidad);
         et_nombreUniversidad = findViewById(R.id.et_nombreUniversidad);
         et_urlUniversidad = findViewById(R.id.et_urlUniversidad);
@@ -129,5 +133,15 @@ public class AnadirOtro extends AppCompatActivity {
                 finish();
             }
         });
+
+        btn_imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(et_urlUniversidad.getText().toString()));
+                startActivity(i);
+            }
+        });
+
+
     }
 }

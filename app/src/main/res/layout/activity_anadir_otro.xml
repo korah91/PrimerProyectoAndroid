@@ -111,4 +111,16 @@
         android:stepSize="1"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+    <ImageButton
+        android:id="@+id/btn_imagen"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/et_urlUniversidad"
+        app:layout_constraintTop_toTopOf="@+id/et_urlUniversidad"
+        app:srcCompat="@drawable/internetlogo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
