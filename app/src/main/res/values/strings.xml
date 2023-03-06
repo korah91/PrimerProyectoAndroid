@@ -12,4 +12,5 @@
     <string name="valoracion05">Valoración 0 a 5</string>
     <string name="valoracion50">Valoración 5 a 0</string>
     <string name="cambiarIdioma">Cambiar Idioma</string>
+    <string name="eligeIdioma">Elige Idioma</string>
 </resources>

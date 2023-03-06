@@ -24,5 +24,6 @@
     <string name="valoracion05">Rating 0 to 5</string>
     <string name="valoracion50">Rating 5 to 0</string>
     <string name="cambiarIdioma">Change language</string>
+    <string name="eligeIdioma">Choose language</string>
 
 </resources>

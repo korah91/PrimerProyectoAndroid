@@ -25,6 +25,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "nombre TEXT NOT NULL," +
                 "valoracion INTEGER NOT NULL," +
                 "url TEXT" + ")");
+
     }
 
     // EN PRINCIPIO NO HAY QUE UTILIZAR

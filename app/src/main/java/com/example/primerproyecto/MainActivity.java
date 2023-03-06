@@ -3,14 +3,23 @@ package com.example.primerproyecto;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -48,15 +57,15 @@ public class MainActivity extends AppCompatActivity {
         DbHelper dbHelper = new DbHelper(MainActivity.this);
         // Le indicamos que se va a escribir sobre la BD
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-/*
 
+        /*
         if(db != null){
             Toast.makeText(MainActivity.this, "Se ha creado la BD", Toast.LENGTH_SHORT).show();
         }
         else{
             Toast.makeText(MainActivity.this, "Ha habido un error", Toast.LENGTH_SHORT).show();
-        }
-*/
+        }*/
+
 
         // Obtenemos el objeto DB para universidades
         DbUniversidades dbUniversidades = new DbUniversidades(this);
@@ -84,12 +93,28 @@ public class MainActivity extends AppCompatActivity {
         btn_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dbUniversidades.reiniciarBaseDatos();
 
-                // Se han borrado los items, asi que cargo una lista vacia en el Adapter del RecyclerView
-                listaUniversidades = dbUniversidades.mostrarUniversidades();
-                mAdapter = new Adapter(listaUniversidades, MainActivity.this);
-                recyclerView.setAdapter(mAdapter);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(getString(R.string.aviso));
+                builder.setMessage(getString(R.string.dialog_resetBD));
+
+                // Creo el boton para confirmar que se quiere reiniciar la BD
+                builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dbUniversidades.reiniciarBaseDatos();
+
+                        // Se han borrado los items, asi que cargo una lista vacia en el Adapter del RecyclerView
+                        listaUniversidades = dbUniversidades.mostrarUniversidades();
+                        mAdapter = new Adapter(listaUniversidades, MainActivity.this);
+                        recyclerView.setAdapter(mAdapter);
+                        }
+                    });
+
+                // Creo el boton para cancelar
+                builder.setNegativeButton(getString(R.string.cancel),null);
+
+                builder.show();
             }
         });
 
@@ -104,6 +129,9 @@ public class MainActivity extends AppCompatActivity {
         // Uso el Adapter
         mAdapter = new Adapter(listaUniversidades, MainActivity.this);
         recyclerView.setAdapter(mAdapter);
+
+
+        notificacion();
     }
 
 
@@ -154,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 // cambiar idioma
                 // código de https://www.tutorialspoint.com/how-to-change-app-language-when-user-selects-language-in-android
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Elige el idioma");
+                builder.setTitle(getString(R.string.eligeIdioma));
                 CharSequence[] opciones = {"Castellano", "English"};
                 builder.setItems(opciones, new DialogInterface.OnClickListener() {
                     @Override
@@ -215,6 +243,42 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void notificacion(){
+
+        // Pido permisos, se ejecuta solo cuando la version de API es 33
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)!=
+                    PackageManager.PERMISSION_GRANTED) {
+                        //PEDIR EL PERMISO
+                        ActivityCompat.requestPermissions(this, new
+                        String[]{Manifest.permission.POST_NOTIFICATIONS}, 11);
+            }
+        }
+        NotificationManager elManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder elBuilder = new NotificationCompat.Builder(this, "IdCanal");
+
+        // Necesario para API mayor o igual que la de la version Oreo
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            NotificationChannel channel = new NotificationChannel("IdCanal", "canal", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("esElCanal");
+            // Register the channel with the system. You can't change the importance
+            // or other notification behaviors after this.
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+            elBuilder.setSmallIcon(android.R.drawable.stat_sys_warning)
+                    .setContentTitle("Recordatorio")
+                    .setContentText("'Recuerda votar! Tu opinión nos es útil.")
+                    .setVibrate(new long[]{0, 1000, 500, 1000})
+                    .setAutoCancel(true);
+
+
+            elManager.notify(1, elBuilder.build());
+        }
+    }
+
 
 
 }
