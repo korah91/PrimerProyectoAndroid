@@ -2,9 +2,12 @@ package com.example.primerproyecto;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
 
 public class DbUsuarios extends DbHelper{
 
@@ -37,5 +40,24 @@ public class DbUsuarios extends DbHelper{
         return id;
     }
 
-    public
+    public boolean esLoginCorrecto(String pEmail, String pPassword){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        boolean esCorrecto = false;
+
+        Cursor cursor = null;
+
+
+        cursor = db.rawQuery("SELECT email FROM " + T_USUARIOS  + " WHERE email=" + pEmail + " AND password=" + pPassword, null);
+
+        // Si existe el email con esa contrasena devuelve True
+        if(cursor.getCount() > 0){
+            esCorrecto = true;
+        }
+        // Si no es correcto devuelve False
+        cursor.close();
+
+        return esCorrecto;
+    }
 }
