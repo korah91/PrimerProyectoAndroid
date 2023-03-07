@@ -29,8 +29,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "url TEXT" + ")");
         // Creamos la tabla de los usuarios
         sqLiteDatabase.execSQL("CREATE TABLE " + T_USUARIOS + "(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "email TEXT NOT NULL," +
+                "email TEXT PRIMARY KEY," +
                 "password TEXT NOT NULL" + ")");
     }
 

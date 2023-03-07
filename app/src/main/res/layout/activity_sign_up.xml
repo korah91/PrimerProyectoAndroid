@@ -2,13 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".SignUp">
 
     <EditText
-        android:id="@+id/et_email"
+        android:id="@+id/et_email2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -20,40 +19,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_password2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/et_email"
-        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+        app:layout_constraintStart_toStartOf="@+id/et_email2"
+        app:layout_constraintTop_toBottomOf="@+id/et_email2" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="@string/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        android:text="@string/registro"
+        app:layout_constraintEnd_toEndOf="@+id/et_password2"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/et_password2"
+        app:layout_constraintTop_toBottomOf="@+id/et_password2" />
 
     <TextView
         android:id="@+id/tv_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="34dp"
         android:clickable="true"
         android:linksClickable="true"
         android:onClick="onClickLogin"
-        android:text="@string/noTienesCuenta"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btn_login"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="@+id/btn_login"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login"
-        app:layout_constraintVertical_bias="0.16" />
-
+        android:text="@string/tienesYaCuenta"
+        app:layout_constraintEnd_toEndOf="@+id/btn_signup"
+        app:layout_constraintStart_toStartOf="@+id/btn_signup"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signup" />
 </androidx.constraintlayout.widget.ConstraintLayout>

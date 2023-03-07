@@ -20,4 +20,6 @@
     <string name="loginFallido">Inicio de sesión fallido</string>
     <string name="debesIntroducirEmail">Debes introducir un email</string>
     <string name="debesIntroducirContraseña">Debes introducir una contraseña</string>
+    <string name="tienesYaCuenta">¿Tienes ya cuenta?</string>
+    <string name="registro">Registrarse</string>
 </resources>

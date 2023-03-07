@@ -30,5 +30,8 @@
     <string name="noTienesCuenta">Don\'t have an account yet?</string>
     <string name="loginFallido">Failed login</string>
     <string name="debesIntroducirEmail">You must enter an e-mail</string>
+    <string name="debesIntroducirContraseña">You must enter a password</string>
+    <string name="tienesYaCuenta">Already have an account?</string>
+    <string name="registro">Sign Up</string>
 
 </resources>
