@@ -33,7 +33,7 @@ public class DbUniversidades extends DbHelper{
             values.put("url", pUrl);
 
             // Finalmente realizamos la query
-            id = db.insert(TABLE, null, values);
+            id = db.insert(T_UNIVERSIDADES, null, values);
         } catch (Exception exception){
             // Si falla imprime la excepcion
             exception.toString();
@@ -51,7 +51,7 @@ public class DbUniversidades extends DbHelper{
         Cursor cursorUniversidad = null;
 
         // Voy a ir guardando en listaUniversidades todas las universidades de la DB
-        cursorUniversidad = db.rawQuery("SELECT * FROM " + TABLE, null);
+        cursorUniversidad = db.rawQuery("SELECT * FROM " + T_UNIVERSIDADES, null);
         if(cursorUniversidad.moveToFirst()){
             do{
                 universidad = new Universidad();
@@ -75,7 +75,7 @@ public class DbUniversidades extends DbHelper{
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            db.execSQL("UPDATE " + TABLE + " SET nombre = '" + nombre + "', valoracion =" + valoracion + ", url = '" + url + "' WHERE id='" + id + "'");
+            db.execSQL("UPDATE " + T_UNIVERSIDADES + " SET nombre = '" + nombre + "', valoracion =" + valoracion + ", url = '" + url + "' WHERE id='" + id + "'");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();
@@ -95,7 +95,7 @@ public class DbUniversidades extends DbHelper{
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            db.execSQL("DELETE FROM " + TABLE);
+            db.execSQL("DELETE FROM " + T_UNIVERSIDADES);
             Toast.makeText(context, "Se ha reiniciado la base de datos", Toast.LENGTH_SHORT).show();
 
             this.insertarUniversidad("UPV/EHU", 3, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.T1dgJjAqe-WOTiPtIzApWAHaHa%26pid%3DApi&f=1&ipt=a3a28a395244771c1dc829e0ea0df73143f47b2608c64bb5806b82a0d255f990&ipo=images");

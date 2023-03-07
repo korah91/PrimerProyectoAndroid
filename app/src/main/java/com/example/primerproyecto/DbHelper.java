@@ -10,7 +10,8 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NOMBRE = "universidades.db";
-    public static final String TABLE = "t_universidades";
+    public static final String T_UNIVERSIDADES = "t_universidades";
+    public static final String T_USUARIOS = "t_usuarios";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
@@ -20,12 +21,17 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE + "(" +
+        // Creamos la tabla de las universidades
+        sqLiteDatabase.execSQL("CREATE TABLE " + T_UNIVERSIDADES + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nombre TEXT NOT NULL," +
                 "valoracion INTEGER NOT NULL," +
                 "url TEXT" + ")");
-
+        // Creamos la tabla de los usuarios
+        sqLiteDatabase.execSQL("CREATE TABLE " + T_USUARIOS + "(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "email TEXT NOT NULL," +
+                "password TEXT NOT NULL" + ")");
     }
 
     // EN PRINCIPIO NO HAY QUE UTILIZAR

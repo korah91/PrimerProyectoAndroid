@@ -25,5 +25,8 @@
     <string name="valoracion50">Rating 5 to 0</string>
     <string name="cambiarIdioma">Change language</string>
     <string name="eligeIdioma">Choose language</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="noTienesCuenta">Don\'t have an account yet?</string>
 
 </resources>
