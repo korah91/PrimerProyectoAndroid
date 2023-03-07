@@ -17,4 +17,7 @@
     <string name="password">Contraseña</string>
     <string name="login">Iniciar Sesión</string>
     <string name="noTienesCuenta">¿No tienes cuenta?</string>
+    <string name="loginFallido">Inicio de sesión fallido</string>
+    <string name="debesIntroducirEmail">Debes introducir un email</string>
+    <string name="debesIntroducirContraseña">Debes introducir una contraseña</string>
 </resources>

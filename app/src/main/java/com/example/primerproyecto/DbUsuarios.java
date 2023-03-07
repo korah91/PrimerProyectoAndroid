@@ -48,8 +48,8 @@ public class DbUsuarios extends DbHelper{
 
         Cursor cursor = null;
 
-
-        cursor = db.rawQuery("SELECT email FROM " + T_USUARIOS  + " WHERE email=" + pEmail + " AND password=" + pPassword, null);
+        // Utilizo parametros para evitar SQL Injection
+        cursor = db.rawQuery("SELECT email FROM " + T_USUARIOS  + " WHERE email=@pEmail AND password= @pPassword", new String[]{pEmail, pPassword});
 
         // Si existe el email con esa contrasena devuelve True
         if(cursor.getCount() > 0){

@@ -28,5 +28,7 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="noTienesCuenta">Don\'t have an account yet?</string>
+    <string name="loginFallido">Failed login</string>
+    <string name="debesIntroducirEmail">You must enter an e-mail</string>
 
 </resources>
