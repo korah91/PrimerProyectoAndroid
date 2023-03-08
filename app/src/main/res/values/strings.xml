@@ -22,4 +22,5 @@
     <string name="debesIntroducirContraseña">Debes introducir una contraseña</string>
     <string name="tienesYaCuenta">¿Tienes ya cuenta?</string>
     <string name="registro">Registrarse</string>
+    <string name="yaExisteEmail">Ya existe este e-mail</string>
 </resources>

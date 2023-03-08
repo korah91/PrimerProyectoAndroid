@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +37,7 @@ public class Login extends AppCompatActivity {
         et_email = findViewById(R.id.et_email);
         et_password = findViewById(R.id.et_password);
         btn_login = findViewById(R.id.btn_login);
-        tv_signup = findViewById(R.id.tv_signup);
+        tv_signup = findViewById(R.id.tv_login);
 
 
 
@@ -64,6 +65,7 @@ public class Login extends AppCompatActivity {
                 else {
                     // Se comprueba que sea correcto el login
                     boolean esCorrecto = dbUsuarios.esLoginCorrecto(email, password);
+                    Log.d("LOG",password);
 
                     // Si el login es correcto se realiza el login
                     if (esCorrecto) {
@@ -84,7 +86,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void onClickLogin(View view){
+    public void onClickSignUp(View view){
         Intent i = new Intent(this, SignUp.class);
         startActivity(i);
         finish();

@@ -41,13 +41,13 @@
         app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
     <TextView
-        android:id="@+id/tv_signup"
+        android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="59dp"
         android:clickable="true"
         android:linksClickable="true"
-        android:onClick="onClickLogin"
+        android:onClick="onClickSignUp"
         android:text="@string/noTienesCuenta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btn_login"

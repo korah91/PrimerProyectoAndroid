@@ -60,4 +60,25 @@ public class DbUsuarios extends DbHelper{
 
         return esCorrecto;
     }
+
+    public boolean existeEmail(String pEmail){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        boolean yaExiste = false;
+
+        Cursor cursor = null;
+
+        // Utilizo parametros para evitar SQL Injection
+        cursor = db.rawQuery("SELECT email FROM " + T_USUARIOS  + " WHERE email=@pEmail", new String[]{pEmail});
+
+        // Si existe el email devuelve True
+        if(cursor.getCount() > 0){
+            yaExiste = true;
+        }
+        // Si no es correcto devuelve False
+        cursor.close();
+
+        return yaExiste;
+    }
 }
