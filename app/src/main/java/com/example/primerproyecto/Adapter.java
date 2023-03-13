@@ -52,10 +52,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
 
 
-    // Create new views (invoked by the layout manager)
+    // Cuando se crea una vista
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        // Create a new view, which defines the UI of the list item
+        // Se utiliza el archivo xml one_line para cada vista. Este tiene imagen, titulo y un ratingBar no editable
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.one_line, viewGroup, false);
 

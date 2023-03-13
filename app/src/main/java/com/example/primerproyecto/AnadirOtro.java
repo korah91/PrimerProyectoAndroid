@@ -1,5 +1,6 @@
 package com.example.primerproyecto;
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,9 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -22,6 +26,7 @@ public class AnadirOtro extends AppCompatActivity {
     RatingBar rt_valoracionUniversidad;
     EditText et_nombreUniversidad, et_urlUniversidad;
     TextView tv_idUniversidad;
+    ImageView iv_imagen;
     int id;
 
 
@@ -44,7 +49,7 @@ public class AnadirOtro extends AppCompatActivity {
         et_nombreUniversidad = findViewById(R.id.et_nombreUniversidad);
         et_urlUniversidad = findViewById(R.id.et_urlUniversidad);
         tv_idUniversidad = findViewById(R.id.tv_idUniversidad);
-
+        iv_imagen = findViewById(R.id.iv_imagen);
         Intent intent = getIntent();
         // Si el intent no da un numero, devuelve -1
         // Si es -1, se presume que se esta creando un nuevo item
@@ -65,6 +70,9 @@ public class AnadirOtro extends AppCompatActivity {
             rt_valoracionUniversidad.setRating(universidad.getValoracion());
             et_urlUniversidad.setText(universidad.getUrl());
             tv_idUniversidad.setText(String.valueOf(id));
+
+            // Utilizo la libreria Glide para coger imagenes de internet en una sola linea
+            Glide.with(this).load(universidad.getUrl()).into(iv_imagen);
 
         }
         // Se ha llegado a esta actividad para crear un nuevo item
@@ -141,7 +149,6 @@ public class AnadirOtro extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 
     }
 }

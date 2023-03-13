@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class Login extends AppCompatActivity {
 
     EditText et_email, et_password;
-    Button btn_login;
+    Button btn_login, btn_guest;
     TextView tv_signup;
 
 
@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
         et_password = findViewById(R.id.et_password);
         btn_login = findViewById(R.id.btn_login);
         tv_signup = findViewById(R.id.tv_login);
-
+        btn_guest = findViewById(R.id.btn_guest);
 
 
         // Cuando se pulsa el boton para iniciar sesion
@@ -69,9 +69,9 @@ public class Login extends AppCompatActivity {
 
                     // Si el login es correcto se realiza el login
                     if (esCorrecto) {
-                        // Paso el email y el password
+                        // Paso el email
                         i.putExtra("email", email);
-                        i.putExtra("password", password);
+                        //i.putExtra("password", password);
                         startActivity(i);
                         // Termino esta actividad
                         finish();
@@ -81,6 +81,16 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(Login.this, getString(R.string.loginFallido), Toast.LENGTH_LONG).show();
                     }
                 }
+            }
+        });
+
+        // Boton para acceder como Invitado
+        btn_guest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Login.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 

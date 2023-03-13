@@ -34,5 +34,6 @@
     <string name="tienesYaCuenta">¿Tienes ya cuenta?</string>
     <string name="registro">Registrarse</string>
     <string name="yaExisteEmail">Ya existe este e-mail</string>
+    <string name="guest">Invitado</string>
 
 </resources>

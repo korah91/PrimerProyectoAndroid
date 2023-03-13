@@ -33,5 +33,7 @@
     <string name="debesIntroducirContraseña">You must enter a password</string>
     <string name="tienesYaCuenta">Already have an account?</string>
     <string name="registro">Sign Up</string>
+    <string name="yaExisteEmail">This e-mail already exists</string>
+    <string name="guest">Guest</string>
 
 </resources>
