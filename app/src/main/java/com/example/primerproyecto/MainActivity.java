@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Log que imprime todas las universidades
         Log.d(TAG, "onCreate: "+ listaUniversidades.toString());
-        Toast.makeText(this, "Universidades count: "+ listaUniversidades.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Número de universidades: "+ listaUniversidades.size(), Toast.LENGTH_SHORT).show();
 
         // Boton para anadir una nueva universidad
         btn_anadir = findViewById(R.id.btn_anadir);
@@ -181,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.menu_changeLang:
                 // cambiar idioma
-                // código de https://www.tutorialspoint.com/how-to-change-app-language-when-user-selects-language-in-android
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(getString(R.string.eligeIdioma));
                 CharSequence[] opciones = {"Castellano", "English"};
@@ -278,6 +277,13 @@ public class MainActivity extends AppCompatActivity {
 
             elManager.notify(1, elBuilder.build());
         }
+    }
+    // Cuando se pulsa el boton "back" se vuelve al login y no se cierra la aplicacion
+    @Override
+    public void onBackPressed(){
+        Intent i = new Intent(this, Login.class);
+        startActivity(i);
+        finish();
     }
 
 

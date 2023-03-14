@@ -151,4 +151,12 @@ public class AnadirOtro extends AppCompatActivity {
         });
 
     }
+
+    // Cuando se pulsa el boton "back" se vuelve a la lista de universidades y no se sale de la aplicacion
+    @Override
+    public void onBackPressed(){
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 }
