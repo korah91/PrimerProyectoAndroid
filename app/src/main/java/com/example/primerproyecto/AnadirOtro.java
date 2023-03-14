@@ -82,11 +82,10 @@ public class AnadirOtro extends AppCompatActivity {
         }
 
 
-
+        // Cuando se pulsa el boton confirmar
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 // El boton solo funciona si se ha escrito el nombre
                 if(et_nombreUniversidad.getText().toString().trim().length() > 0){
                     String nombre = et_nombreUniversidad.getText().toString();
@@ -97,7 +96,6 @@ public class AnadirOtro extends AppCompatActivity {
                         // se actualiza el item
                         Universidad updatedUniversidad = new Universidad();
 
-                        //updatedUniversidad.setId(id);                 EL ID SE AUTOINCREMENTA, ASI QUE NO LO CAMBIO
                         updatedUniversidad.setNombre(nombre);
                         updatedUniversidad.setValoracion(valoracion);
                         updatedUniversidad.setUrl(url);

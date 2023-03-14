@@ -2,8 +2,6 @@
 
     <resources>
 
-    <string name="app_name">First Proyect</string>
-
     <string name="et_nombre">Name</string>
 
     <string name="valoracion">Rating</string>

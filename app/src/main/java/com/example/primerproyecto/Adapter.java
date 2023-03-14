@@ -30,7 +30,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
 
-    // El ViewHolder controla las vistas, osea cada one_line
+    // El ViewHolder controla las vistas, cada one_line.xml
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_imagen;
         TextView tv_nombreUniversidad;
@@ -52,7 +52,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
 
 
-    // Cuando se crea una vista
+    // Cuando se crea una vista se le aplica el layout one_line.xml
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Se utiliza el archivo xml one_line para cada vista. Este tiene imagen, titulo y un ratingBar no editable
@@ -62,11 +62,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    // Se consiguen los datos de cada universidad de la BD y se ponen en cada vista
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") int position) {
 
+        // Se pone el nombre de la universidad en la vista
         viewHolder.tv_nombreUniversidad.setText(""+ listaUniversidades.get(position).getNombre());
+        // Se pone la valoracion
         viewHolder.rt_valoracionUniversidad.setRating( (float) listaUniversidades.get(position).getValoracion());
 
         // Utilizo la libreria Glide para coger imagenes de internet en una sola linea
@@ -77,7 +79,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AnadirOtro.class);
-
+                // Paso el id de la universidad para mostrarlo cuando se edite
                 intent.putExtra("id", listaUniversidades.get(position).getId());
                 context.startActivity(intent);
 

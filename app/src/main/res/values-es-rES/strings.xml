@@ -2,8 +2,6 @@
 
     <resources>
 
-    <string name="app_name">Primer Proyecto</string>
-
     <string name="et_nombre">Nombre</string>
 
     <string name="valoracion">Valoración</string>
