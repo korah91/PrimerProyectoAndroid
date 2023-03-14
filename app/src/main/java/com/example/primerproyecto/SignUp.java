@@ -46,7 +46,7 @@ public class SignUp extends AppCompatActivity {
         btn_cambiarIdioma = findViewById(R.id.btn_cambiarIdioma);
         btn_guest = findViewById(R.id.btn_guest);
 
-        // Cuando se pulsa el boton para iniciar sesion
+        // Cuando se pulsa el boton para registrar
         // Primero se comprueba que no esten vacios los campos
         // Luego se comprueba el login con la BD
         btn_signup.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +165,8 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
+
+    // Cuando se le da click a ¿Ya estas registrado? se navega al login
     public void onClickLogin(View view){
         Intent i = new Intent(this, Login.class);
         startActivity(i);

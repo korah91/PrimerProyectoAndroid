@@ -40,6 +40,7 @@ public class DbUsuarios extends DbHelper{
         return id;
     }
 
+    // Dado email y contrasena, verifica que el login es correcto
     public boolean esLoginCorrecto(String pEmail, String pPassword){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -61,6 +62,7 @@ public class DbUsuarios extends DbHelper{
         return esCorrecto;
     }
 
+    // Devuelve True si ya existe el email
     public boolean existeEmail(String pEmail){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();

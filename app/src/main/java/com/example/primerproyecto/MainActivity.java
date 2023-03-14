@@ -59,15 +59,6 @@ public class MainActivity extends AppCompatActivity {
         // Le indicamos que se va a escribir sobre la BD
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        /*
-        if(db != null){
-            Toast.makeText(MainActivity.this, "Se ha creado la BD", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(MainActivity.this, "Ha habido un error", Toast.LENGTH_SHORT).show();
-        }*/
-
-
         // Obtenemos el objeto DB para universidades
         DbUniversidades dbUniversidades = new DbUniversidades(this);
 
@@ -94,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         btn_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                // Se crea un dialog para confirmar el reseteo
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(getString(R.string.aviso));
                 builder.setMessage(getString(R.string.dialog_resetBD));
@@ -131,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new Adapter(listaUniversidades, MainActivity.this);
         recyclerView.setAdapter(mAdapter);
 
-
+        // Cuando entro en la actividad principal se crea una notificacion para recordar al usuario que puntue
         notificacion();
     }
 
@@ -244,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Crea la notificacion
     public void notificacion(){
 
         // Pido permisos, se ejecuta solo cuando la version de API es 33

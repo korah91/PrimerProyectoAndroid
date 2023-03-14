@@ -161,12 +161,14 @@ public class Login extends AppCompatActivity {
 
                     }
                 });
+                // Se muestra el builder
                 builder.show();
             }
         });
 
     }
 
+    // Cuando se le da click a ¿No estas registrado? se navega al registro
     public void onClickSignUp(View view){
         Intent i = new Intent(this, SignUp.class);
         startActivity(i);

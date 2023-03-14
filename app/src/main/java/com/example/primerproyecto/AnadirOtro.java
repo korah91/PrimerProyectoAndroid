@@ -93,27 +93,11 @@ public class AnadirOtro extends AppCompatActivity {
                     String url = et_urlUniversidad.getText().toString();
 
                     if (id >= 0){
-                        // se actualiza el item
-                        Universidad updatedUniversidad = new Universidad();
-
-                        updatedUniversidad.setNombre(nombre);
-                        updatedUniversidad.setValoracion(valoracion);
-                        updatedUniversidad.setUrl(url);
-
                         // Actualizo la universidad
                         dbUniversidades.editarUniversidad(id, nombre, valoracion, url);
                     }
                     else {
-                        // se crea el item
-
-                        Universidad newUniversidad = new Universidad();
-
-                        newUniversidad.setNombre(nombre);
-                        newUniversidad.setValoracion(valoracion);
-                        newUniversidad.setUrl(url);
-
-
-                        // Lo añado a la lista
+                        // Añado a la lista la universidad
                         dbUniversidades.insertarUniversidad(nombre, valoracion, url);
                     }
 
@@ -131,6 +115,7 @@ public class AnadirOtro extends AppCompatActivity {
             }
         });
 
+        // Cuando se pulsa el boton cancelar se vuelve al menu principal
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,6 +125,7 @@ public class AnadirOtro extends AppCompatActivity {
             }
         });
 
+        // Cuando se pulsa en el boton al lado de la url se abre el navegador con la direccion de la imagen
         btn_imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

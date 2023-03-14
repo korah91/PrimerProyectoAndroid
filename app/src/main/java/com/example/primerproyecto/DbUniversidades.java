@@ -41,6 +41,7 @@ public class DbUniversidades extends DbHelper{
         return id;
     }
 
+    // Devuelve todas las universidades en un ArrayList
     public ArrayList<Universidad> mostrarUniversidades(){
 
         DbHelper dbHelper = new DbHelper(context);
@@ -48,18 +49,20 @@ public class DbUniversidades extends DbHelper{
 
         ArrayList<Universidad> listaUniversidades = new ArrayList<Universidad>();
         Universidad universidad = new Universidad();
+        // Se crea el cursor
         Cursor cursorUniversidad = null;
 
         // Voy a ir guardando en listaUniversidades todas las universidades de la DB
         cursorUniversidad = db.rawQuery("SELECT * FROM " + T_UNIVERSIDADES, null);
         if(cursorUniversidad.moveToFirst()){
             do{
+                // Se crea el objeto de clase Universidad
                 universidad = new Universidad();
                 universidad.setId(cursorUniversidad.getInt(0));
                 universidad.setNombre(cursorUniversidad.getString(1));
                 universidad.setValoracion(cursorUniversidad.getInt(2));
                 universidad.setUrl(cursorUniversidad.getString(3));
-
+                // Se añade a la lista
                 listaUniversidades.add(universidad);
             }
             while (cursorUniversidad.moveToNext());
@@ -68,6 +71,7 @@ public class DbUniversidades extends DbHelper{
         return listaUniversidades;
     }
 
+    // Editar una universidad
     public boolean editarUniversidad(int id, String nombre, int valoracion, String url){
         boolean correcto = false;
 
@@ -89,14 +93,15 @@ public class DbUniversidades extends DbHelper{
         return correcto;
     }
 
-
+    // Borra las universidades y vuelve a crear las 13 por defecto.
+    // No he hecho un reinicio de los usuarios porque no seria util
     public void reiniciarBaseDatos(){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
             db.execSQL("DELETE FROM " + T_UNIVERSIDADES);
-            Toast.makeText(context, "Se ha reiniciado la base de datos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getString(R.string.seHaReiniciadoBD), Toast.LENGTH_SHORT).show();
 
             this.insertarUniversidad("UPV/EHU", 3, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.T1dgJjAqe-WOTiPtIzApWAHaHa%26pid%3DApi&f=1&ipt=a3a28a395244771c1dc829e0ea0df73143f47b2608c64bb5806b82a0d255f990&ipo=images");
             this.insertarUniversidad("Universidad Autónoma de Madrid", 5, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.9e96CDDUQkKpVJ1LSg9wPwHaDw%26pid%3DApi&f=1&ipt=46d5ecb7cd0719c850185991fd068b4a1953272f66d9ff83519db71244ee9266&ipo=images");

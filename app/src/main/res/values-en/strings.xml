@@ -33,5 +33,6 @@
     <string name="registro">Sign Up</string>
     <string name="yaExisteEmail">This e-mail already exists</string>
     <string name="guest">Guest</string>
+    <string name="seHaReiniciadoBD">BD has been restored</string>
 
 </resources>

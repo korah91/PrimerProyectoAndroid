@@ -33,7 +33,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "password TEXT NOT NULL" + ")");
     }
 
-    // EN PRINCIPIO NO HAY QUE UTILIZAR
+    // No me ha sido necesario utilizar este metodo, sirve para actualizar la BD
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
