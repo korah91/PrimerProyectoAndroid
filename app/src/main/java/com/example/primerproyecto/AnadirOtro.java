@@ -56,6 +56,10 @@ public class AnadirOtro extends AppCompatActivity {
         id = intent.getIntExtra("id", -1);
         Universidad universidad = null;
 
+        // Cargo el logo para acceder a internet con Glide.
+        // Si no lo hago con Glide en API 26 salta un error diciendo que el bitmap es muy grande
+        Glide.with(this).load(R.drawable.internetlogo).into(btn_imagen);
+
         // Se ha llegado a esta actividad para editar un item
         if (id >= 0){
 
